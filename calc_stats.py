@@ -107,10 +107,27 @@ def getWeaponData(file):
 			weapon_data[type][size]['fluxsec'] /= count
 			weapon_data[type][size]['op'] /= count
 
+fighter_data = {
+	'op': 0,
+	'count': 0
+}
+
+def getFighterData(filePath):
+	with open(filePath) as csvfile:
+		reader = csv.DictReader(csvfile)
+		for row in reader:
+			op = int(row['op cost'] or 0)
+			if op > 0 and row['role desc'] != 'Transience':
+				fighter_data['op'] += int(row['op cost'])
+				fighter_data['count'] += 1
+	fighter_data['op'] /= fighter_data['count']
+
+
 #Get average fighter costs
-#wing_data = getData(sys.argv[1] + "\\starsector-core\\data\\hulls\\wing_data.csv")
+getFighterData(sys.argv[1] + "\\starsector-core\\data\\hulls\\wing_data.csv")
+print(fighter_data)
 
 #Get hull mod costs
 
 getWeaponData(sys.argv[1] + "\\starsector-core\\data\\weapons\\weapon_data.csv")
-print(weapon_data)
+#print(weapon_data)
