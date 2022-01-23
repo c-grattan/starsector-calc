@@ -75,9 +75,8 @@ def getWeaponData(file):
 		for row in reader:
 			if row['id'] and row['hints'] != 'SYSTEM': #Skip fighter-exclusive and built-in weapons
 				weaponFile = sys.argv[1] + "\\starsector-core\\data\\weapons\\" + row['id'] + ".wpn"
-				tags = row['tags'].split(',')
-				if ' omega' in tags:
-					print("Omega weapon")
+				if not params['omega'] and ' omega' in row['tags'].split(','):
+					break
 				with open(weaponFile) as weapon:
 					#Get weapon type/mount size
 					size = ''
@@ -119,4 +118,4 @@ def getWeaponData(file):
 #Get hull mod costs
 
 getWeaponData(sys.argv[1] + "\\starsector-core\\data\\weapons\\weapon_data.csv")
-#print(weapon_data)
+print(weapon_data)
