@@ -8,11 +8,6 @@ pFile = open("params.json")
 params = json.load(pFile)
 pFile.close()
 
-def getData(file):
-	with open(file, newline='\n') as csvfile:
-		reader = csv.DictReader(csvfile)
-		return [row for row in reader]
-
 weapon_data = {
 	'BALLISTIC': {
 		'SMALL': {
