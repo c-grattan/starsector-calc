@@ -122,12 +122,14 @@ def getFighterData(filePath):
 				fighter_data['count'] += 1
 	fighter_data['op'] /= fighter_data['count']
 
-
-#Get average fighter costs
-getFighterData(sys.argv[1] + "\\starsector-core\\data\\hulls\\wing_data.csv")
-print(fighter_data)
-
-#Get hull mod costs
-
 getWeaponData(sys.argv[1] + "\\starsector-core\\data\\weapons\\weapon_data.csv")
 #print(weapon_data)
+
+getFighterData(sys.argv[1] + "\\starsector-core\\data\\hulls\\wing_data.csv")
+#print(fighter_data)
+
+with open("data/weapon_data.json", "w") as datadump:
+	json.dump(weapon_data, datadump, indent=4)
+
+with open("data/fighter_data.json", "w") as datadump:
+	json.dump(fighter_data, datadump, indent=4)
