@@ -128,8 +128,9 @@ getWeaponData(sys.argv[1] + "\\starsector-core\\data\\weapons\\weapon_data.csv")
 getFighterData(sys.argv[1] + "\\starsector-core\\data\\hulls\\wing_data.csv")
 #print(fighter_data)
 
-with open("data/weapon_data.json", "w") as datadump:
-	json.dump(weapon_data, datadump, indent=4)
+def dataDump(path, object):
+	with open(path, "w") as datadump:
+		json.dump(object, datadump, indent=4)
 
-with open("data/fighter_data.json", "w") as datadump:
-	json.dump(fighter_data, datadump, indent=4)
+dataDump("data/weapon_data.json", weapon_data)
+dataDump("data/fighter_data.json", fighter_data)
